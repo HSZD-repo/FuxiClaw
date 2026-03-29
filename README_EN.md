@@ -21,9 +21,9 @@ FuxiClaw is an open-source capability-layer repository that helps users migrate 
 
 ### Demo (Solving `bix-3-q1` in BixBench)
 
-<video src="example/bix-3-q1/process.mov" controls width="100%"></video>
+<img src="example/bix-3-q1/process.gif" alt="bix-3-q1 process demo GIF" width="100%">
 
-If the video cannot be played directly on your platform, click to download/view: [`example/bix-3-q1/process.mov`](example/bix-3-q1/process.mov)
+If the GIF cannot be displayed directly on your platform, click to download/view: [`example/bix-3-q1/process.gif`](example/bix-3-q1/process.gif)
 
 Its core goal is to provide two enhancement layers for local OpenClaw:
 

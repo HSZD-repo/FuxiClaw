@@ -21,9 +21,9 @@
 
 ### 演示（解决 BixBench 中的 `bix-3-q1` 问题）
 
-<video src="example/bix-3-q1/process.mov" controls width="100%"></video>
+<img src="example/bix-3-q1/process.gif" alt="bix-3-q1 过程演示 GIF" width="100%">
 
-如果上方视频在当前平台无法直接播放，可点击下载/查看：[`example/bix-3-q1/process.mov`](example/bix-3-q1/process.mov)
+如果上方 GIF 在当前平台无法直接显示，可点击下载/查看：[`example/bix-3-q1/process.gif`](example/bix-3-q1/process.gif)
 
 
 
