@@ -23,7 +23,7 @@
 
 <img src="example/bix-3-q1/process.gif" alt="bix-3-q1 过程演示 GIF" width="100%">
 
-如果上方 GIF 在当前平台无法直接显示，可点击下载/查看：[`example/bix-3-q1/process.gif`](example/bix-3-q1/process.gif)
+如果上方 GIF 在当前平台无法直接显示，可点击下载/查看：[`example/bix-3-q1/process.mov`](example/bix-3-q1/process.mov)
 
 
 
