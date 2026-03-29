@@ -1,0 +1,31 @@
+DESeq2 Analysis Results
+======================
+
+Comparison: final_blood vs baseline_blood (Control mice only)
+Design: ~ Tissue
+
+Sample counts:
+  - baseline_blood: 10
+  - final_blood: 10
+
+Total genes analyzed:
+25402
+
+Filtering criteria:
+  - FDR (padj) < 0.05
+  - |log2FoldChange| > 1
+  - baseMean >= 10
+
+Significant genes meeting criteria: 545
+
+Top 10 significant genes:
+  1. Plunc: log2FC=16.79, baseMean=10348.6, FDR=6.82e-62
+  2. Gpr110: log2FC=-27.51, baseMean=379.0, FDR=4.08e-47
+  3. 9930032O22Rik: log2FC=-26.79, baseMean=232.3, FDR=6.14e-41
+  4. Aadac: log2FC=-28.18, baseMean=620.9, FDR=7.31e-41
+  5. 9430007A20Rik: log2FC=-29.23, baseMean=1333.7, FDR=5.32e-40
+  6. Krt5: log2FC=-26.41, baseMean=169.5, FDR=2.01e-37
+  7. Aadacl3: log2FC=-24.84, baseMean=151.0, FDR=5.17e-32
+  8. Ces2f: log2FC=-26.26, baseMean=154.2, FDR=3.17e-29
+  9. Cldn23: log2FC=-26.35, baseMean=164.0, FDR=7.31e-29
+  10. BC048679: log2FC=-28.93, baseMean=1398.7, FDR=2.81e-28
