@@ -1,0 +1,11 @@
+DESeq2 Analysis Summary
+=======================
+
+Design: ~ Tissue
+Contrast: final_blood vs baseline_blood
+
+Total genes analyzed: 20956 
+Genes meeting criteria (FDR<0.05, |log2FC|>1, baseMean>=10): 545 
+
+Upregulated in final_blood (log2FC > 1): 288 
+Downregulated in final_blood (log2FC < -1): 257 

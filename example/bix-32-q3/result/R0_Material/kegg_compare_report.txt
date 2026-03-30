@@ -1,0 +1,55 @@
+KEGG enrichment comparison for upregulated genes
+Criteria: padj < 0.05 and log2FoldChange > 1.5 ; enrichment pvalue < 0.05 and BH-adjusted pvalue < 0.05 
+
+ strain tested_genes upregulated_genes annotated_upregulated
+     97         5828                13                    13
+     98         5828                35                    12
+     99         5828                81                    43
+ significant_pathways
+                    4
+                    2
+                    5
+
+Significant KEGG pathways by strain:
+
+Strain 97 
+       ID                                Description Count GeneRatio  BgRatio
+ pau00405                     Phenazine biosynthesis     6      6/13  24/2048
+ pau00970                Aminoacyl-tRNA biosynthesis     6      6/13  86/2048
+ pau02024                             Quorum sensing     6      6/13 111/2048
+ pau02025 Biofilm formation - Pseudomonas aeruginosa     6      6/13 112/2048
+       pvalue     p.adjust
+ 2.152834e-09 2.152834e-08
+ 6.245283e-06 3.122642e-05
+ 2.787260e-05 7.340083e-05
+ 2.936033e-05 7.340083e-05
+
+Strain 98 
+       ID               Description Count GeneRatio BgRatio       pvalue
+ pau00920         Sulfur metabolism     4      4/12 60/2048 0.0002767035
+ pau00190 Oxidative phosphorylation     3      3/12 58/2048 0.0039558082
+    p.adjust
+ 0.003043738
+ 0.021756945
+
+Strain 99 
+       ID                 Description Count GeneRatio BgRatio      pvalue
+ pau00970 Aminoacyl-tRNA biosynthesis     7      7/43 86/2048 0.001694266
+ pau03010                    Ribosome     6      6/43 67/2048 0.002297055
+ pau00740       Riboflavin metabolism     3      3/43 14/2048 0.002672197
+ pau00190   Oxidative phosphorylation     5      5/43 58/2048 0.006460158
+ pau00920           Sulfur metabolism     5      5/43 60/2048 0.007464272
+   p.adjust
+ 0.02939416
+ 0.02939416
+ 0.02939416
+ 0.04926420
+ 0.04926420
+
+Exclusive significant pathways in strain 99 (not significant in 97 or 98):
+       ID           Description Count GeneRatio BgRatio      pvalue   p.adjust
+ pau03010              Ribosome     6      6/43 67/2048 0.002297055 0.02939416
+ pau00740 Riboflavin metabolism     3      3/43 14/2048 0.002672197 0.02939416
+                                                            geneID
+ PA14_17060/PA14_57580/PA14_57590/PA14_60400/PA14_60460/PA14_70190
+                                  PA14_11410/PA14_11420/PA14_19530

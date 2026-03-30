@@ -1,34 +1,37 @@
 # Execution Plan
 
-## Step 1: Data Extraction and Preparation
-- Read the NormCount sheet from the Excel file
-- Extract column headers (row 3) to identify sample groupings
-- Map samples to their tissue types and response groups
-- Filter for Control samples only
-- Subset data to include only baseline_blood and final_blood samples
-- Scale normalized counts to integer pseudo-counts (multiply by a scaling factor and round)
-- Create sample metadata data frame with Tissue information
+## Step 1: Environment Setup
+- Check if R and required packages (DESeq2, readxl) are installed
+- Install missing dependencies if needed
 
-## Step 2: DESeq2 Analysis
-- Install/load required R packages: DESeq2, BiocManager
-- Create DESeqDataSet object with design formula ~ Tissue
-- Run DESeq() function to perform differential expression analysis
-- Extract results with contrast: final_blood vs baseline_blood
+## Step 2: Data Loading and Exploration
+- Read the Excel file using Python (pandas/readxl)
+- Examine data structure (samples, genes, metadata)
+- Identify Control mice samples
+- Separate count matrix from metadata
+- Check if counts are normalized (if so, convert to integer pseudo-counts)
 
-## Step 3: Results Filtering and Reporting
-- Filter results for genes meeting criteria:
-  - FDR (padj) < 0.05
-  - |log2FoldChange| > 1
-  - baseMean ≥ 10
-- Count the number of significant genes
-- Save full results and filtered results to CSV files
-- Generate summary report
+## Step 3: Data Preparation for DESeq2
+- Extract count data for Control mice only
+- Filter for final_blood and baseline_blood samples
+- Create metadata dataframe with Tissue column
+- Ensure counts are integers (scale if normalized)
+- Remove genes with very low counts across all samples
 
-## Step 4: HTML Report Generation
-- Create comprehensive HTML report with:
-  - Analysis methodology
-  - Sample information
-  - DESeq2 results summary
-  - Significant genes table
-  - Count of genes meeting criteria
+## Step 4: DESeq2 Analysis
+- Create DESeqDataSet object with design ~ Tissue
+- Run DESeq2 pipeline (estimation, testing)
+- Extract results for contrast: final_blood vs baseline_blood
+- Apply independent filtering (alpha=0.05)
 
+## Step 5: Filtering and Results
+- Filter results by: FDR < 0.05, |log2FC| > 1, baseMean ≥ 10
+- Count genes meeting all criteria
+- Save full results table
+- Save filtered results table
+
+## Step 6: Report Generation
+- Generate HTML report with analysis summary
+- Include data preprocessing steps
+- Document filtering criteria
+- Report final gene count

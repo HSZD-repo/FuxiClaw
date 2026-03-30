@@ -21,9 +21,11 @@
 
 ### 演示（解决 BixBench 中的 `bix-3-q1` 问题）
 
-<img src="example/bix-3-q1/process.gif" alt="bix-3-q1 过程演示 GIF" width="100%">
+<video src="example/bix-3-q1/bix-3-q1_v0.mp4" controls width="100%">
+  您的浏览器不支持内嵌视频，可<a href="example/bix-3-q1/bix-3-q1_v0.mp4">下载 MP4</a>查看。
+</video>
 
-如果上方 GIF 在当前平台无法直接显示，可点击下载/查看：[`example/bix-3-q1/process.mov`](example/bix-3-q1/process.mov)
+如果上方视频在当前平台无法直接播放，可点击下载/查看：[`example/bix-3-q1/bix-3-q1_v0.mp4`](example/bix-3-q1/bix-3-q1_v0.mp4)
 
 
 

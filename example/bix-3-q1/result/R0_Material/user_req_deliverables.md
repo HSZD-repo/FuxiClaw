@@ -1,29 +1,26 @@
-# User Requirements and Deliverables
+# User Request Deliverables
 
-## User Question Summary
-Using DESeq2 on Control mice, compare final blood vs baseline blood (design ~ Tissue; contrast final_blood vs baseline_blood). Report the count of genes with FDR<0.05, |log2FC|>1, and baseMean≥10; if counts are normalized, scale to integer pseudo-counts before running DESeq2.
+Based on the user prompt and file analysis, the following deliverables are required:
 
-## Data Description
-- **Source File:** Data_deposition_RNAseq_Paroxetine_2017.xlsx
-- **NormCount Sheet:** Contains normalized count data for 25,405 genes across 90 samples
-- **Mapping_statistics Sheet:** Contains sample metadata
+## Primary Deliverable
+1. **DESeq2 Analysis Results** - Differential expression analysis comparing final_blood vs baseline_blood in Control mice
+   - Design: ~ Tissue
+   - Contrast: final_blood vs baseline_blood
 
-## Control Sample Structure
-- **baseline_blood:** 10 Control samples (Sample IDs ending in _bl)
-- **final_blood:** 10 Control samples (Sample IDs ending in _fi)
-- **dentate_gyrus:** 10 Control samples (Sample IDs ending in _c) - not used in this comparison
-
-## Analysis Parameters
-1. **Design Formula:** ~ Tissue
-2. **Contrast:** final_blood vs baseline_blood
-3. **Filtering Criteria:**
-   - FDR < 0.05
+## Specific Outputs Required
+2. **Count of Significant Genes** - Number of genes meeting ALL criteria:
+   - FDR (adjusted p-value) < 0.05
    - |log2FoldChange| > 1
    - baseMean ≥ 10
 
-## Required Deliverables
-1. **deseq2_results.csv** - Full DESeq2 results table
-2. **significant_genes.csv** - Filtered significant genes meeting criteria
-3. **count_summary.txt** - Report with count of significant genes
-4. **demo_*.html** - HTML report documenting the full analysis
+3. **Results Table** - CSV file containing DESeq2 results for all genes
 
+4. **Filtered Results Table** - CSV file containing only genes meeting significance criteria
+
+## Report
+5. **HTML Report** (`demo_<timestamp>.html`) documenting:
+   - Data preprocessing steps
+   - DESeq2 analysis parameters
+   - Filtering criteria
+   - Final count of significant genes
+   - Summary statistics
