@@ -19,15 +19,17 @@
 
 伏羲Claw 是一个开源的能力仓库，方便用户将这里的 `skills` 和 `SOUL` 文档迁移到自己的本地 OpenClaw 中，作为增强本地 OpenClaw 生信能力的能力库。  
 
-### 演示（解决 BixBench 中的 `bix-3-q1` 问题）
+### 演示1（解决 BixBench 中的 `bix-3-q1` 问题）
 
-<video src="example/bix-3-q1/bix-3-q1_v0.mp4" controls width="100%">
-  您的浏览器不支持内嵌视频，可<a href="example/bix-3-q1/bix-3-q1_v0.mp4">下载 MP4</a>查看。
-</video>
+<img src="example/bix-3-q1/bix-3-q1.gif" alt="bix-3-q1 过程演示" width="100%">
 
-如果上方视频在当前平台无法直接播放，可点击下载/查看：[`example/bix-3-q1/bix-3-q1_v0.mp4`](example/bix-3-q1/bix-3-q1_v0.mp4)
+如果上方 GIF 无法显示，可下载/查看 MP4：[`example/bix-3-q1/bix-3-q1_v0.mp4`](example/bix-3-q1/bix-3-q1_v0.mp4)
 
+### 演示2（解决 BixBench 中的 `bix-32-q3` 问题）
 
+<img src="example/bix-32-q3/bix-32-q3.gif" alt="bix-32-q3 过程演示" width="100%">
+
+如果上方 GIF 无法显示，可下载/查看 MP4：[`example/bix-32-q3/bix-32-q3_v0.mp4`](example/bix-32-q3/bix-32-q3_v0.mp4)
 
 它的核心目标是为本地 OpenClaw 提供两类增强：
 

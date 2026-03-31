@@ -19,13 +19,17 @@
 
 FuxiClaw is an open-source capability-layer repository that helps users migrate the `skills` and `SOUL` documents in this repo into their local OpenClaw environments, serving as a library to strengthen local OpenClaw bioinformatics capabilities.
 
-### Demo (Solving `bix-3-q1` in BixBench)
+### Demo1 (Solving `bix-3-q1` in BixBench)
 
-<video src="example/bix-3-q1/bix-3-q1_v0.mp4" controls width="100%">
-  Your browser does not support embedded video; <a href="example/bix-3-q1/bix-3-q1_v0.mp4">download the MP4</a> to view.
-</video>
+<img src="example/bix-3-q1/bix-3-q1.gif" alt="bix-3-q1 process demo" width="100%">
 
-If the video cannot be played directly on your platform, click to download/view: [`example/bix-3-q1/bix-3-q1_v0.mp4`](example/bix-3-q1/bix-3-q1_v0.mp4)
+If the GIF does not display, download/view the MP4: [`example/bix-3-q1/bix-3-q1_v0.mp4`](example/bix-3-q1/bix-3-q1_v0.mp4)
+
+### Demo2 (Solving `bix-32-q3` in BixBench)
+
+<img src="example/bix-32-q3/bix-32-q3.gif" alt="bix-32-q3 process demo" width="100%">
+
+If the GIF does not display, download/view the MP4: [`example/bix-32-q3/bix-32-q3_v0.mp4`](example/bix-32-q3/bix-32-q3_v0.mp4)
 
 Its core goal is to provide two enhancement layers for local OpenClaw:
 
