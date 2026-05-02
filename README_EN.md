@@ -9,6 +9,13 @@ For the Chinese version of this document, see [README.md](README.md).
 </p>
 
 <!-- Demo video placeholder -->
+## Demo
+
+<p align="center">
+  <img src="assets/demo/sample_demo.gif" alt="FuxiClaw sample demo" width="100%">
+</p>
+
+Sample: FuxiClaw can automatically turn a given protein-ligand structure into a drug discovery report covering the binding pocket, key interactions, mutation impacts, and optimization suggestions. For a clearer demo video, open [`assets/demo/sample_demo.mp4`](assets/demo/sample_demo.mp4).
 
 ## Quick Start
 

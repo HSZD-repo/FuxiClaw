@@ -9,6 +9,13 @@ English version: [README_EN.md](README_EN.md)
 </p>
 
 <!-- Demo video placeholder -->
+## Demo
+
+<p align="center">
+  <img src="assets/demo/sample_demo.gif" alt="FuxiClaw sample demo" width="100%">
+</p>
+
+样例：FuxiClaw 可以把一个给定的蛋白-配体结构自动解析成一份包含结合口袋、关键相互作用、突变影响和优化建议的药物发现报告。若需观看更清晰的演示视频，可打开 [`assets/demo/sample_demo.mp4`](assets/demo/sample_demo.mp4)。
 
 ## Quick Start
 
