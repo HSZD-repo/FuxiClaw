@@ -1,0 +1,18 @@
+# Shipped defaults; override with ./sandboxes/envs.yaml (from repo cwd) or
+# ~/.openharness/sandboxes/envs.yaml
+environments:
+  bioinformatics:
+    image: "openharness/sandbox-bioinformatics:latest"
+    description: >
+      Bioinformatics-oriented stack — use for R/Bioconductor, Python scientific
+      stacks, CLI genomics tools when they are not available on the host.
+    dockerfile: "src/openharness/sandbox/Dockerfile"
+    tags:
+      - python
+      - r
+      - bioinformatics
+      - genomics
+    resources:
+      cpu: 4
+      memory: "8g"
+    network_enabled: false

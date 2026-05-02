@@ -1,0 +1,130 @@
+@import "highlight.js/styles/github-dark-dimmed.css";
+
+.oh-markdown {
+  line-height: 1.65;
+  word-wrap: break-word;
+}
+
+.oh-markdown > *:first-child {
+  margin-top: 0;
+}
+
+.oh-markdown > *:last-child {
+  margin-bottom: 0;
+}
+
+.oh-markdown h1,
+.oh-markdown h2,
+.oh-markdown h3,
+.oh-markdown h4 {
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text-primary);
+}
+.oh-markdown h1 { font-size: 1.4em; }
+.oh-markdown h2 { font-size: 1.2em; }
+.oh-markdown h3 { font-size: 1.05em; }
+
+.oh-markdown p {
+  margin: 0.6em 0;
+}
+
+.oh-markdown ul,
+.oh-markdown ol {
+  margin: 0.5em 0;
+  padding-left: 1.8em;
+}
+
+.oh-markdown li {
+  margin: 0.25em 0;
+}
+
+.oh-markdown li > p {
+  margin: 0.3em 0;
+}
+
+.oh-markdown code:not(pre code) {
+  background: var(--color-bg-code);
+  border: 1px solid var(--color-border-subtle);
+  padding: 0.12em 0.35em;
+  border-radius: var(--radius-sm);
+  font-size: 0.88em;
+  font-family: var(--font-mono);
+  color: var(--color-md-inline-code-fg);
+}
+
+.oh-markdown pre {
+  background: var(--color-bg-code) !important;
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  margin: 0.6em 0;
+  overflow-x: auto;
+  font-size: 0.85em;
+  line-height: 1.5;
+  font-family: var(--font-mono);
+}
+
+.oh-markdown pre code {
+  background: none;
+  padding: 0;
+  font-size: inherit;
+  color: inherit;
+}
+
+.oh-markdown blockquote {
+  border-left: 3px solid var(--color-border-primary);
+  margin: 0.6em 0;
+  padding: 0.35em 0 0.35em 0.9em;
+  color: var(--color-text-muted);
+  background: var(--color-bg-secondary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.oh-markdown hr {
+  border: none;
+  border-top: 1px solid var(--color-border-secondary);
+  margin: 1em 0;
+}
+
+.oh-markdown table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.6em 0;
+  font-size: 0.9em;
+}
+
+.oh-markdown th,
+.oh-markdown td {
+  border: 1px solid var(--color-border-secondary);
+  padding: 6px 10px;
+  text-align: left;
+}
+
+.oh-markdown th {
+  background: var(--color-bg-secondary);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+.oh-markdown a {
+  color: var(--color-md-link);
+  text-decoration: none;
+}
+
+.oh-markdown a:hover {
+  color: var(--color-accent-blue);
+  text-decoration: underline;
+}
+
+.oh-markdown strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.oh-markdown img {
+  max-width: 100%;
+  border-radius: var(--radius-md);
+}

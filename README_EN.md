@@ -1,172 +1,447 @@
-# FuxiClaw - Open-Source Bioinformatics Library for OpenClaw
+# FuxiClaw
 
-**Language / 语言:** [English](README_EN.md) | [中文](README.md)
+**FuxiClaw** is a bioinformatics GUI agent application built on top of [OpenHarness](https://github.com/HKUDS/OpenHarness).
 
-<div align="center">
+For the Chinese version of this document, see [README.md](README.md).
 
 <p align="center">
-  <img src="FuxiClaw_Logo.png" alt="FuxiClaw Logo" width="350">
+  <img src="assets/branding/FuxiClaw_Logo.png" alt="FuxiClaw Logo" width="320">
 </p>
 
-**FuxiClaw is an open-source library of biomedical and bioinformatics capability documents for OpenClaw, designed for easy migration of `skills` and `SOUL` into local OpenClaw workspaces.**
-
-[![OpenClaw](https://img.shields.io/badge/OpenClaw-compatible-blue?style=flat-square)](https://github.com/openclaw/openclaw)
-[![Skills](https://img.shields.io/badge/skills-866-success?style=flat-square)](skills/)
-[![SOUL](https://img.shields.io/badge/SOUL-domain%20mindset-orange?style=flat-square)](SOUL.md)
-[![License](https://img.shields.io/badge/license-MIT-lightgrey?style=flat-square)](LICENSE)
-
-</div>
-
-FuxiClaw is an open-source capability-layer repository that helps users migrate the `skills` and `SOUL` documents in this repo into their local OpenClaw environments, serving as a library to strengthen local OpenClaw bioinformatics capabilities.
-
-### Demo1 (Solving `bix-3-q1` in BixBench)
-
-<img src="example/bix-3-q1/bix-3-q1.gif" alt="bix-3-q1 process demo" width="100%">
-
-If the GIF does not display, download/view the MP4: [`example/bix-3-q1/bix-3-q1_v0.mp4`](example/bix-3-q1/bix-3-q1_v0.mp4)
-
-### Demo2 (Solving `bix-32-q3` in BixBench)
-
-<img src="example/bix-32-q3/bix-32-q3.gif" alt="bix-32-q3 process demo" width="100%">
-
-If the GIF does not display, download/view the MP4: [`example/bix-32-q3/bix-32-q3_v0.mp4`](example/bix-32-q3/bix-32-q3_v0.mp4)
-
-Its core goal is to provide two enhancement layers for local OpenClaw:
-
-- **Professional skill layer (`skills`)**: Adds tool usage and workflow capabilities required for biomedical and bioinformatics tasks
-- **Reasoning and behavior layer (`SOUL`)**: Injects task decomposition and execution patterns better suited for complex bioinformatics work
-
-After users migrate these files locally and finish setup, OpenClaw becomes better at handling medium-to-high complexity bioinformatics research tasks.
-
-## Disclaimer
-
-All skills in this repository are **not original creations**. They are collected and organized from public project materials, mainly referencing related projects mentioned in [BioAgent Hub](https://bioagenthub-syslab.manus.space/).
-
----
-
-## Overview
-
-FuxiClaw is designed for the "local OpenClaw capability enhancement" scenario. You can use it as a whole or copy only selected directories as needed.
-Unlike generic prompts, this repository emphasizes:
-
-- Reusable, domain-specific skills for bioinformatics and biomedical tasks
-- Process-oriented and structured execution for complex tasks
-- Low-cost integration with OpenClaw workflows
-
-## What Is Included
-
-- `skills/`: Biomedical and bioinformatics skill directory (typically includes `SKILL.md` and reference materials)
-- `SOUL.md`: Domain role and execution principles defining agent thinking style and boundaries
-- `setup/`: Environment bootstrap and integration scripts
-- `example/`: Example tasks for validating integration
-- `LICENSE`: Open-source license
+<!-- Demo video placeholder -->
 
 ## Quick Start
 
-First, clone the repository locally:
+Choose your platform:
+
+- [macOS](#macos)
+- [Windows (PowerShell)](#windows-powershell)
+
+### macOS
+
+> macOS only. The commands below assume a Unix-like shell on macOS.
+
+The steps below are written for a first-time user who has just cloned this repository locally. When finished, you will have a GUI-based FuxiClaw setup, and the frontend agent will be able to use a local Docker-backed `bioinformatics` sandbox through OpenSandbox.
+
+#### 1. Check local prerequisites
+
+Make sure the following tools are already installed:
+
+- Python `>= 3.10`
+- Node.js `>= 18`
+- Docker Desktop
+
+You can verify them with:
 
 ```bash
-git clone https://github.com/<your-org-or-username>/FuxiClaw.git
+python --version
+node -v
+npm -v
+docker version
+docker info
 ```
 
-Then connect it to your local OpenClaw following these steps:
-
-1. Prepare a runnable local OpenClaw workspace
-2. Copy `FuxiClaw/skills/` and `FuxiClaw/SOUL.md` into a path readable by OpenClaw
-3. Register/enable these directories according to your OpenClaw configuration method
-4. Reload the session and run a bioinformatics task for validation
-
-## Environment Setup (macOS / Linux)
-
-It is recommended to prepare an isolated local environment first (preferably via `conda`/`mamba`), then install common dependencies for bioinformatics analysis. Below is a minimal setup flow you can copy directly.
-
-### 1) Install basic tools
-
-macOS (Homebrew):
+#### 2. Clone the repository and enter the project root
 
 ```bash
-brew install micromamba git wget curl
+git clone <your-repo-url> FuxiClaw
+cd FuxiClaw
 ```
 
-Ubuntu / Debian:
+If you have already cloned the repository, just `cd` into the project root.
 
-```bash
-sudo apt update
-sudo apt install -y curl wget git build-essential
-```
+#### 3. Check and prepare the bioinformatics Docker image
 
-### 2) Create an isolated environment (recommended)
-
-```bash
-micromamba create -n fuxiclaw-bio -c conda-forge -c bioconda \
-  python=3.11 r-base=4.3 r-essentials \
-  r-tidyverse r-data-table r-readxl r-optparse \
-  bioconductor-deseq2 bioconductor-edger bioconductor-limma \
-  bioconductor-tximport bioconductor-biostrings bioconductor-annotationdbi \
-  samtools bcftools bedtools fastqc multiqc -y
-micromamba activate fuxiclaw-bio
-```
-
-### 3) Install R packages (if not covered by conda or if additional packages are needed)
-
-```bash
-R -e "if (!requireNamespace('BiocManager', quietly=TRUE)) install.packages('BiocManager', repos='https://cloud.r-project.org')"
-R -e "BiocManager::install(c('DESeq2','edgeR','limma','tximport','Biostrings','AnnotationDbi'), ask=FALSE, update=FALSE)"
-```
-
-### 4) Optional Python bioinformatics packages
-
-```bash
-pip install pandas numpy scipy scikit-learn matplotlib seaborn biopython pysam
-```
-
-### 5) Quick self-check
-
-```bash
-python -c "import pandas, numpy, Bio, pysam; print('python deps ok')"
-R -e "library(DESeq2); library(edgeR); library(limma); sessionInfo()"
-```
-
-## How To Use In Practice
-
-Usage example:
-
-```
-/deep help me solve the problem below
-
-Using DESeq2 on Control mice(Data file address:"/Users/maxliu01/Desktop/0_project/1_bio_agent/hszd/BixBench/hf/testcase/bix-3-q1/CapsuleData-94bcdbc9-c729-4661-9bc1-0057bbea39c4/Data_deposition_RNAseq_Paroxetine_2017.xlsx"), compare final blood vs baseline blood (design ~ Tissue; contrast final_blood vs baseline_blood). Report the count of genes with FDR<0.05, |log2FC|>1, and baseMean≥10; if counts are normalized, scale to integer pseudo-counts before running DESeq2.
-```
-
-⚠️ Note: this usage is **not** direct prompt input.
-You must use a command with a prefix: `/deep <your task description>` to trigger and execute the pipeline.
-
-If the configuration works correctly, you will usually observe:
-
-- Clearer task decomposition (retrieve first, analyze second, summarize last)
-- Tool choices that are better aligned with bioinformatics context
-- More structured outputs that are easier to iterate on
-
-## Repository Layout
+FuxiClaw uses the `bioinformatics` sandbox environment by default. Its image is:
 
 ```text
-FuxiClaw/
-├── README.md
-├── README_EN.md
-├── LICENSE
-├── SOUL.md
-├── setup/     # environment bootstrap and integration scripts
-├── skills/    # biomedical and bioinformatics skill directories
-└── example/   # sample task for validation
+openharness/sandbox-bioinformatics:latest
 ```
 
-## Related Repositories
+The default environment definition lives at:
 
-| Repository | Why it matters |
-|------------|----------------|
-| [`openclaw/openclaw`](https://github.com/openclaw/openclaw) | OpenClaw runtime and workspace model that FuxiClaw plugs into. |
+```text
+src/openharness/sandbox/default_envs.yaml
+```
 
-## Use Cases
+First check whether the image already exists:
 
-- Quickly add biomedical and bioinformatics task capabilities to local OpenClaw
-- Give the agent more stable planning/execution reasoning for complex tasks
-- Reuse a maintainable "skill layer + SOUL layer" configuration pattern across teams
+```bash
+docker image ls | grep openharness/sandbox-bioinformatics
+```
+
+If you do not see `openharness/sandbox-bioinformatics:latest`, build it first:
+
+```bash
+docker build -t openharness/sandbox-bioinformatics:latest \
+  -f src/openharness/sandbox/Dockerfile src/openharness/sandbox
+```
+
+What you need here is the Docker `image`. You do not need a pre-running `container` before starting the app.
+
+It is best to do this early, because the `bioinformatics` image is the most important part of the sandbox runtime foundation.
+
+#### 4. Create a virtual environment and install dependencies
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -U pip
+pip install -e '.[opensandbox]'
+pip install opensandbox-server
+
+npm --prefix frontend/application-ui install
+```
+
+Notes:
+
+- `.[opensandbox]` installs the GUI backend dependencies and the OpenSandbox SDK
+- `opensandbox-server` is installed separately for the local Docker sandbox service
+
+#### 5. Configure the model API
+
+First copy the environment variable template:
+
+```bash
+cp .env.example .env
+```
+
+Then edit `.env` and fill in at least these values:
+
+```bash
+OPENAI_API_KEY=your_api_key
+OPENAI_BASE_URL=https://api.openai.com/v1
+OPENHARNESS_MODEL=gpt-4.1
+```
+
+If you use another OpenAI-compatible provider, replace the values accordingly. For example, for DeepSeek V4 Flash:
+
+```bash
+OPENAI_API_KEY=your_deepseek_api_key
+OPENAI_BASE_URL=https://api.deepseek.com/v1
+OPENHARNESS_MODEL=deepseek-v4-flash
+OPENHARNESS_PROVIDER=DeepSeek
+```
+
+`scripts/dev_application_ui.sh` automatically loads `.env` from the repository root when it starts.
+
+#### 6. Start OpenSandbox Server
+
+Open a first terminal window and run:
+
+```bash
+cd FuxiClaw
+source .venv/bin/activate
+opensandbox-server
+```
+
+If you see a port-in-use error such as `127.0.0.1:8081 already in use`, you likely already have an `opensandbox-server` running. In that case, do not start a second one and just continue to the next step.
+
+#### 7. Start the GUI
+
+Open a second terminal window and run:
+
+```bash
+cd FuxiClaw
+source .venv/bin/activate
+scripts/dev_application_ui.sh
+```
+
+This script starts both:
+
+- The GUI backend: `python -m openharness.web`
+- The frontend dev server: Vite (`http://localhost:5173`)
+
+#### 8. Open the browser
+
+Open:
+
+```text
+http://localhost:5173/
+```
+
+After the UI loads, you can paste the following prompt into the frontend as a quick sandbox test:
+
+```text
+Please first inspect the currently available sandbox environments and enter the `bioinformatics` sandbox.
+
+Then perform a quick bioinformatics environment audit inside this container with the following requirements:
+
+1. Do not guess. You must verify everything by actually running commands.
+2. Check and summarize whether the following are installed, and report their versions:
+   - Python
+   - R
+   - Common command-line bioinformatics tools: samtools, bcftools, bedtools, bwa, bowtie2, minimap2, blastn, fastqc, multiqc, seqkit
+3. For each tool, clearly label it as:
+   - Installed + version
+   - Not installed
+4. Organize the results into a clear Markdown report.
+5. Save the final report to:
+   `/workspace/output/sandbox_bioinfo_audit.md`
+
+If possible, also include the key commands you used for the inspection so I can reproduce them later.
+```
+
+#### Later restarts
+
+Once the dependencies and Docker image are already prepared, future launches usually only require:
+
+1. Open Docker Desktop
+2. Run `opensandbox-server` in one terminal
+3. Run `scripts/dev_application_ui.sh` in another terminal
+4. Open `http://localhost:5173/`
+
+### Windows (PowerShell)
+
+> Windows only. The commands below assume native Windows, PowerShell, and Docker Desktop.
+
+The steps below are written for a first-time user who has just cloned this repository locally. When finished, you will have a GUI-based FuxiClaw setup running in native Windows PowerShell, using OpenSandbox + Docker Desktop with the `bioinformatics` sandbox environment. Unlike macOS, Windows does not use `scripts/dev_application_ui.sh`; instead, it starts OpenSandbox Server, the web backend, and the Vite frontend in separate PowerShell windows.
+
+#### 1. Check local prerequisites
+
+Make sure the following tools are already installed:
+
+- Python `>= 3.10`
+- Node.js `>= 18`
+- Docker Desktop
+
+You can verify them with:
+
+```powershell
+python --version
+node -v
+npm.cmd -v
+docker version
+docker info
+```
+
+Before continuing, manually start Docker Desktop and make sure `docker info` returns successfully.
+
+If `docker version` or `docker info` fails, do not continue to the later OpenSandbox steps yet. Start Docker Desktop first and wait until it is ready.
+
+#### 2. Clone the repository and enter the project root
+
+```powershell
+git clone <your-repo-url> FuxiClaw
+cd FuxiClaw
+```
+
+If you have already cloned the repository, just `cd` into the project root.
+
+#### 3. Check and prepare the bioinformatics Docker image
+
+FuxiClaw uses the `bioinformatics` sandbox environment by default. Its image is:
+
+```text
+openharness/sandbox-bioinformatics:latest
+```
+
+The default environment definition lives at:
+
+```text
+src/openharness/sandbox/default_envs.yaml
+```
+
+First check whether the image already exists:
+
+```powershell
+docker image ls openharness/sandbox-bioinformatics
+```
+
+If you do not see `openharness/sandbox-bioinformatics:latest`, build it first:
+
+```powershell
+docker build -t openharness/sandbox-bioinformatics:latest -f ".\src\openharness\sandbox\Dockerfile" ".\src\openharness\sandbox"
+```
+
+What you need here is the Docker `image`. You do not need a pre-running `container` before starting the app.
+
+It is best to do this early, because the `bioinformatics` image is the most important part of the sandbox runtime foundation.
+
+#### 4. Create a virtual environment and install dependencies
+
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -U pip
+.\.venv\Scripts\pip.exe install -e ".[opensandbox]"
+.\.venv\Scripts\pip.exe install opensandbox-server
+
+npm.cmd --prefix frontend/application-ui install
+```
+
+Notes:
+
+- If PowerShell blocks `npm`, use `npm.cmd` directly
+- `.[opensandbox]` installs the GUI backend dependencies and the OpenSandbox SDK
+- `opensandbox-server` is installed separately for the local Docker sandbox service
+
+If you later see `SyntaxError: source code string cannot contain null bytes` when running `opensandbox-server.exe`, the current `.venv` is usually corrupted. The safest fix is to delete `.venv` and rerun this step.
+
+#### 5. Prepare model configuration
+
+On Windows, the simplest approach is to set the environment variables in the same PowerShell window where you later start the web backend.
+
+If you use OpenAI, set:
+
+```powershell
+$env:OPENAI_API_KEY="your_api_key"
+$env:OPENAI_BASE_URL="https://api.openai.com/v1"
+$env:OPENHARNESS_MODEL="gpt-4.1"
+```
+
+If you use DeepSeek V4 Flash, use:
+
+```powershell
+$env:OPENAI_API_KEY="your_deepseek_api_key"
+$env:OPENAI_BASE_URL="https://api.deepseek.com/v1"
+$env:OPENHARNESS_MODEL="deepseek-v4-flash"
+$env:OPENHARNESS_PROVIDER="DeepSeek"
+```
+
+#### 6. Initialize OpenSandbox configuration
+
+Generate `C:\Users\<your-username>\.sandbox.toml` first:
+
+```powershell
+$cfg = Join-Path $HOME ".sandbox.toml"
+& ".\.venv\Scripts\opensandbox-server.exe" init-config $cfg --example docker
+Get-Content $cfg
+```
+
+Important: run these lines separately. Do not paste the `$cfg = ...` assignment and the `& ".\.venv\Scripts\opensandbox-server.exe" ...` command into the same line.
+
+If you want a one-liner, use a semicolon:
+
+```powershell
+$cfg = Join-Path $HOME ".sandbox.toml"; & ".\.venv\Scripts\opensandbox-server.exe" init-config $cfg --example docker
+```
+
+If you keep the default empty `server.api_key`, the first startup requires you to type uppercase `YES` in the same window to confirm.
+
+#### 7. Start OpenSandbox Server
+
+Open the first PowerShell window and run:
+
+```powershell
+cd FuxiClaw
+docker info
+$cfg = Join-Path $HOME ".sandbox.toml"
+& ".\.venv\Scripts\opensandbox-server.exe" --config $cfg
+```
+
+If you see:
+
+```text
+Type 'YES' to continue startup without API key
+```
+
+Type:
+
+```text
+YES
+```
+
+Once you see `Application startup complete` or the service starts listening on a local port, keep this window open.
+
+If you get a port-in-use error here, that usually means an `opensandbox-server` is already running. In that case, do not start another one and continue to the next step.
+
+If you see `DOCKER::INITIALIZATION_ERROR`, `Error while fetching server API version`, or `CreateFile`, Docker Desktop is usually not running yet or is not fully ready. Confirm that Docker Desktop is open and that `docker info` succeeds, then rerun this step.
+
+#### 8. Start the web backend
+
+Open the second PowerShell window and run:
+
+```powershell
+cd FuxiClaw
+$env:OPENAI_API_KEY="your_api_key"
+$env:OPENAI_BASE_URL="https://api.openai.com/v1"
+$env:OPENHARNESS_MODEL="gpt-4.1"
+$env:PYTHONPATH=(Resolve-Path .\src).Path
+
+.\.venv\Scripts\python.exe -m openharness.web --host 127.0.0.1 --port 8765
+```
+
+If you use DeepSeek V4 Flash, replace the first 3 lines with:
+
+```powershell
+$env:OPENAI_API_KEY="your_deepseek_api_key"
+$env:OPENAI_BASE_URL="https://api.deepseek.com/v1"
+$env:OPENHARNESS_MODEL="deepseek-v4-flash"
+$env:OPENHARNESS_PROVIDER="DeepSeek"
+```
+
+#### 9. Start the frontend GUI
+
+Open the third PowerShell window and run:
+
+```powershell
+cd FuxiClaw
+npm.cmd --prefix frontend/application-ui run dev -- --port 5173
+```
+
+#### 10. Open the browser
+
+Open:
+
+```text
+http://localhost:5173/
+```
+
+After the UI loads, you can paste the following prompt into the frontend as a quick sandbox test:
+
+```text
+Please first inspect the currently available sandbox environments and enter the `bioinformatics` sandbox.
+
+Then perform a quick bioinformatics environment audit inside this container with the following requirements:
+
+1. Do not guess. You must verify everything by actually running commands.
+2. Check and summarize whether the following are installed, and report their versions:
+   - Python
+   - R
+   - Common command-line bioinformatics tools: samtools, bcftools, bedtools, bwa, bowtie2, minimap2, blastn, fastqc, multiqc, seqkit
+3. For each tool, clearly label it as:
+   - Installed + version
+   - Not installed
+4. Organize the results into a clear Markdown report.
+5. Save the final report to:
+   `/workspace/output/sandbox_bioinfo_audit.md`
+
+If possible, also include the key commands you used for the inspection so I can reproduce them later.
+```
+
+After you upload files, you can ask the agent to run analyses inside the container and save the outputs to:
+
+```text
+/workspace/output
+```
+
+Files written there are synced back to the frontend for artifact preview or download.
+
+#### Later restarts
+
+Once the dependencies, `.sandbox.toml`, and Docker image are already prepared, future launches usually only require:
+
+1. Open Docker Desktop
+2. Run `opensandbox-server` in the first PowerShell window
+3. Run `python -m openharness.web` in the second PowerShell window
+4. Run `npm.cmd --prefix frontend/application-ui run dev -- --port 5173` in the third PowerShell window
+5. Open `http://localhost:5173/`
+
+## Project Overview
+
+FuxiClaw aims to let users who are not comfortable with the command line work with a bioinformatics-capable agent through a browser interface: upload data, describe analysis goals, inspect tool execution, and download generated result files.
+
+Built on top of the Vibe Code agent loop, tool system, permission model, and session capabilities, this project adds a bioinformatics-oriented web UI and combines OpenSandbox with local Docker so heavyweight dependencies can run inside containers.
+
+## Key Features
+
+- Use a Vibe Code agent through a GUI
+- Support file upload, session management, and artifact preview
+- Run isolated tasks with local Docker and OpenSandbox
+- Target bioinformatics workflows that depend on heavy or isolated runtimes
+
+For the original upstream framework documentation, see [README-OpenHarness.md](docs/app/README-OpenHarness.md).
+
+## Bioinformatics Tools
+
+For the currently available bioinformatics capabilities, bundled skills, sandbox tools, local plotting tools, and public database query tools, see [README-bio-tools.md](docs/app/README-bio-tools.md).

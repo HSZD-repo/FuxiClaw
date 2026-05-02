@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+/* =========================================================================
+   Tailwind v4 Theme — Design Tokens
+   (mirrors frontend/web/src/index.css in the reference project)
+   ========================================================================= */
+
+@theme {
+  /* -- Colors (Backgrounds) -- */
+  --color-bg-page:           #0d0d0d;
+  --color-bg-secondary:      #111111;
+  --color-bg-tertiary:       #1a1a1a;
+  --color-bg-elevated:       #1e1e1e;
+  --color-bg-input:          #1a1a1a;
+  --color-bg-code:           #111111;
+
+  /* Message bubbles */
+  --color-bg-msg-user:       #1e1e1e;
+  --color-msg-user-border:   #3d3d3d;
+  --color-bg-msg-assistant:  #17151c;
+  --color-bg-msg-system:     #1a1a1a;
+  --color-bg-msg-tool:       #151818;
+  --color-bg-msg-result:     #151818;
+  --color-bg-msg-log:        #181818;
+
+  --color-bg-error:          #2a1010;
+  --color-bg-error-deep:     #1a0808;
+  --color-bg-warning:        #2a1a10;
+
+  /* -- Colors (Text) -- */
+  --color-text-primary:      #e2e8f0;
+  --color-text-secondary:    #cccccc;
+  --color-text-tertiary:     #aaaaaa;
+  --color-text-muted:        #888888;
+  --color-text-dimmed:       #666666;
+  --color-text-faint:        #555555;
+
+  /* -- Colors (Borders) -- */
+  --color-border-primary:    #333333;
+  --color-border-secondary:  #2a2a2a;
+  --color-border-subtle:     #222222;
+  --color-border-header:     #1e1e1e;
+  --color-border-tool:       #1a2e2e;
+  --color-border-error:      #7f1d1d;
+
+  /* -- Colors (Accent / Semantic) -- */
+  --color-accent-blue:       #3b82f6;
+  --color-accent-green:      #6ee7a8;
+  --color-on-accent-green:   #0a0f0d;
+  --color-accent-yellow:     #eab308;
+  --color-accent-red:        #ef4444;
+  --color-accent-red-light:  #f87171;
+  --color-accent-yellow-light: #fbbf24;
+
+  /* Role labels & bubble left accents */
+  --color-role-user:         #6d8eb8;
+  --color-role-assistant:    #9a8fb8;
+  --color-role-system:       #8792a3;
+  --color-role-tool:         #5f8f8f;
+  --color-role-result:       #6d9d7a;
+  --color-role-log:          #6b7280;
+
+  /* Markdown inside assistant bubbles */
+  --color-md-link:           #6ea3e8;
+  --color-md-inline-code-fg: #c4cdd8;
+
+  /* -- Colors (Overlay) -- */
+  --color-overlay:           rgba(0, 0, 0, 0.6);
+
+  /* -- Radii -- */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+
+  /* -- Fonts -- */
+  --font-mono: ui-monospace, "SF Mono", "Cascadia Code", "Fira Code", monospace;
+  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  /* -- Animations -- */
+  --animate-blink: blink 1s step-end infinite;
+  --animate-spin-slow: spin 0.8s linear infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body, #root {
+    height: 100%;
+    background: var(--color-bg-page);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border-primary);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-text-faint);
+  }
+
+  textarea:focus {
+    border-color: var(--color-accent-blue) !important;
+  }
+}
+
+@layer components {
+  .spinner {
+    @apply size-8 rounded-full border-3 animate-spin-slow;
+    border-color: var(--color-border-primary);
+    border-top-color: var(--color-accent-blue);
+  }
+}
