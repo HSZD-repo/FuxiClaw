@@ -197,6 +197,14 @@ Once the dependencies and Docker image are already prepared, future launches usu
 
 The steps below are written for a first-time user who has just cloned this repository locally. When finished, you will have a GUI-based FuxiClaw setup running in native Windows PowerShell, using OpenSandbox + Docker Desktop with the `bioinformatics` sandbox environment. Unlike macOS, Windows does not use `scripts/dev_application_ui.sh`; instead, it starts OpenSandbox Server, the web backend, and the Vite frontend in separate PowerShell windows.
 
+Before you begin, you can watch this Windows Quickstart demo video:
+
+<video src="assets/demo/win_demo.mp4" controls preload="metadata" width="100%">
+  Your environment does not support inline playback. Use the MP4 link below instead.
+</video>
+
+If the video does not play inline, open [`assets/demo/win_demo.mp4`](assets/demo/win_demo.mp4) directly.
+
 #### 1. Check local prerequisites
 
 Make sure the following tools are already installed:
