@@ -9,6 +9,13 @@ For the Chinese version of this document, see [README.md](README.md).
 </p>
 
 <!-- Demo video placeholder -->
+## Demo
+
+<p align="center">
+  <img src="assets/demo/sample_demo.gif" alt="FuxiClaw sample demo" width="100%">
+</p>
+
+Sample: FuxiClaw can automatically turn a given protein-ligand structure into a drug discovery report covering the binding pocket, key interactions, mutation impacts, and optimization suggestions. For a clearer demo video, open [`assets/demo/sample_demo.mp4`](assets/demo/sample_demo.mp4).
 
 ## Quick Start
 
@@ -99,12 +106,14 @@ pip install -e '.[opensandbox]'
 pip install opensandbox-server
 
 npm --prefix frontend/application-ui install
+python -m playwright install chromium
 ```
 
 Notes:
 
 - `.[opensandbox]` installs the GUI backend dependencies and the OpenSandbox SDK
 - `opensandbox-server` is installed separately for the local Docker sandbox service
+- `python -m playwright install chromium` downloads the Chromium browser binary used by Playwright
 
 #### 5. Configure the model API
 
@@ -283,6 +292,7 @@ py -3.11 -m venv .venv
 .\.venv\Scripts\pip.exe install opensandbox-server
 
 npm.cmd --prefix frontend/application-ui install
+.\.venv\Scripts\python.exe -m playwright install chromium
 ```
 
 Notes:
@@ -290,6 +300,7 @@ Notes:
 - If PowerShell blocks `npm`, use `npm.cmd` directly
 - `.[opensandbox]` installs the GUI backend dependencies and the OpenSandbox SDK
 - `opensandbox-server` is installed separately for the local Docker sandbox service
+- `.\.venv\Scripts\python.exe -m playwright install chromium` downloads the Chromium browser binary used by Playwright
 
 If you later see `SyntaxError: source code string cannot contain null bytes` when running `opensandbox-server.exe`, the current `.venv` is usually corrupted. The safest fix is to delete `.venv` and rerun this step.
 

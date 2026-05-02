@@ -9,6 +9,13 @@ English version: [README_EN.md](README_EN.md)
 </p>
 
 <!-- Demo video placeholder -->
+## Demo
+
+<p align="center">
+  <img src="assets/demo/sample_demo.gif" alt="FuxiClaw sample demo" width="100%">
+</p>
+
+样例：FuxiClaw 可以把一个给定的蛋白-配体结构自动解析成一份包含结合口袋、关键相互作用、突变影响和优化建议的药物发现报告。若需观看更清晰的演示视频，可打开 [`assets/demo/sample_demo.mp4`](assets/demo/sample_demo.mp4)。
 
 ## Quick Start
 
@@ -99,12 +106,14 @@ pip install -e '.[opensandbox]'
 pip install opensandbox-server
 
 npm --prefix frontend/application-ui install
+python -m playwright install chromium
 ```
 
 说明：
 
 - `.[opensandbox]` 会安装 GUI 后端和 OpenSandbox SDK 所需依赖
 - `opensandbox-server` 单独安装，供本地 Docker sandbox 服务使用
+- `python -m playwright install chromium` 会下载 Playwright 使用的 Chromium 浏览器二进制
 
 #### 5. 配置模型 API
 
@@ -283,6 +292,7 @@ py -3.11 -m venv .venv
 .\.venv\Scripts\pip.exe install opensandbox-server
 
 npm.cmd --prefix frontend/application-ui install
+.\.venv\Scripts\python.exe -m playwright install chromium
 ```
 
 说明：
@@ -290,6 +300,7 @@ npm.cmd --prefix frontend/application-ui install
 - PowerShell 中如果 `npm` 被执行策略拦住，请直接使用 `npm.cmd`
 - `.[opensandbox]` 会安装 GUI 后端和 OpenSandbox SDK 所需依赖
 - `opensandbox-server` 单独安装，供本地 Docker sandbox 服务使用
+- `.\.venv\Scripts\python.exe -m playwright install chromium` 会下载 Playwright 使用的 Chromium 浏览器二进制
 
 如果后面运行 `opensandbox-server.exe` 时看到 `SyntaxError: source code string cannot contain null bytes`，通常说明当前 `.venv` 已损坏。最稳妥的处理方式是删除 `.venv` 后重新执行本步骤。
 
