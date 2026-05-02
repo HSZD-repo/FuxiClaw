@@ -23,6 +23,14 @@ Choose your platform:
 
 下面的流程面向第一次把仓库 `git clone` 到本地的用户。完成后，你会得到一个带 GUI 的 FuxiClaw，并让前端 Agent 通过 OpenSandbox 使用本地 Docker 提供的 `bioinformatics` 生信环境。
 
+开始之前，可以先看一遍下面这个 Mac Quick Start 演示视频：
+
+<video src="assets/demo/mac_demo.mp4" controls preload="metadata" width="100%">
+  你的环境不支持直接播放该视频，可改为打开下方 MP4 链接。
+</video>
+
+如果视频无法直接播放，可直接打开 [`assets/demo/mac_demo.mp4`](assets/demo/mac_demo.mp4)。
+
 #### 1. 检查本机前置环境
 
 先确认这些工具已经装好：

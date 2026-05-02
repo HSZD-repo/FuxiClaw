@@ -23,6 +23,14 @@ Choose your platform:
 
 The steps below are written for a first-time user who has just cloned this repository locally. When finished, you will have a GUI-based FuxiClaw setup, and the frontend agent will be able to use a local Docker-backed `bioinformatics` sandbox through OpenSandbox.
 
+Before you begin, you can watch this Mac Quick Start demo video:
+
+<video src="assets/demo/mac_demo.mp4" controls preload="metadata" width="100%">
+  Your environment does not support inline playback. Use the MP4 link below instead.
+</video>
+
+If the video does not play inline, open [`assets/demo/mac_demo.mp4`](assets/demo/mac_demo.mp4) directly.
+
 #### 1. Check local prerequisites
 
 Make sure the following tools are already installed:
