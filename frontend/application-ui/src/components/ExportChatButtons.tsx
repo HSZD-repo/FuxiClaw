@@ -18,7 +18,7 @@ export default function ExportChatButtons({ state }: ExportChatButtonsProps) {
   const onExportJson = () => {
     if (!canExport) return;
     const body = buildExportJson(state);
-    triggerDownload(exportFilename("fuxi-claw-chat", "json"), body, "application/json;charset=utf-8");
+    triggerDownload(exportFilename("med-claw-chat", "json"), body, "application/json;charset=utf-8");
   };
 
   return (

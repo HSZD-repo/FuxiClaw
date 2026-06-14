@@ -97,7 +97,7 @@ ALLOWED_EXTENSIONS = frozenset({
 
 
 DEFAULT_SYSTEM_PROMPT = (
-    "You are FuxiClaw, a helpful coding assistant running inside the "
+    "You are MedClaw, a helpful coding assistant running inside the "
     "Application UI. Respond in Markdown when it improves readability."
 )
 
@@ -1681,7 +1681,7 @@ async def api_download_session_export(request: Request) -> FileResponse | JSONRe
         return JSONResponse({"error": "Invalid or inactive session_id"}, status_code=403)
 
     tmp = tempfile.NamedTemporaryFile(
-        prefix="fuxi-claw-export-",
+        prefix="med-claw-export-",
         suffix=".zip",
         delete=False,
     )
@@ -1699,7 +1699,7 @@ async def api_download_session_export(request: Request) -> FileResponse | JSONRe
         return JSONResponse({"error": "Failed to build export archive"}, status_code=500)
 
     stamp = time.strftime("%Y%m%d-%H%M%S", time.localtime())
-    filename = f"fuxi-claw-session-{session_id}-{stamp}.zip"
+    filename = f"med-claw-session-{session_id}-{stamp}.zip"
     return FileResponse(
         str(tmp_path),
         media_type="application/zip",
@@ -1828,7 +1828,7 @@ def run_server(
         )
 
     logger.info(
-        "FuxiClaw Application UI server at http://%s:%s/ (WS /ws, API /api/*, model=%s)",
+        "MedClaw Application UI server at http://%s:%s/ (WS /ws, API /api/*, model=%s)",
         cfg.host,
         cfg.port,
         cfg.model or current_settings.model,

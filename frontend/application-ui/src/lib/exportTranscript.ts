@@ -71,7 +71,7 @@ function formatTranscriptItemMd(item: TranscriptItem, index: number): string {
 
 export function buildExportMarkdown(state: SessionState): string {
   const parts: string[] = [];
-  parts.push("# FuxiClaw transcript");
+  parts.push("# MedClaw transcript");
   parts.push("");
   parts.push(`Exported: ${new Date().toISOString()}`);
 

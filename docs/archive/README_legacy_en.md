@@ -1,14 +1,14 @@
-# FuxiClaw - Open-Source Bioinformatics Library for OpenClaw
+# MedClaw - Open-Source Bioinformatics Library for OpenClaw
 
 **Language / 语言:** [English](README_EN.md) | [中文](README.md)
 
 <div align="center">
 
 <p align="center">
-  <img src="FuxiClaw_Logo.png" alt="FuxiClaw Logo" width="350">
+  <img src="MedClaw_Logo.png" alt="MedClaw Logo" width="350">
 </p>
 
-**FuxiClaw is an open-source library of biomedical and bioinformatics capability documents for OpenClaw, designed for easy migration of `skills` and `SOUL` into local OpenClaw workspaces.**
+**MedClaw is an open-source library of biomedical and bioinformatics capability documents for OpenClaw, designed for easy migration of `skills` and `SOUL` into local OpenClaw workspaces.**
 
 [![OpenClaw](https://img.shields.io/badge/OpenClaw-compatible-blue?style=flat-square)](https://github.com/openclaw/openclaw)
 [![Skills](https://img.shields.io/badge/skills-866-success?style=flat-square)](skills/)
@@ -17,7 +17,7 @@
 
 </div>
 
-FuxiClaw is an open-source capability-layer repository that helps users migrate the `skills` and `SOUL` documents in this repo into their local OpenClaw environments, serving as a library to strengthen local OpenClaw bioinformatics capabilities.
+MedClaw is an open-source capability-layer repository that helps users migrate the `skills` and `SOUL` documents in this repo into their local OpenClaw environments, serving as a library to strengthen local OpenClaw bioinformatics capabilities.
 
 ### Demo1 (Solving `bix-3-q1` in BixBench)
 
@@ -46,7 +46,7 @@ All skills in this repository are **not original creations**. They are collected
 
 ## Overview
 
-FuxiClaw is designed for the "local OpenClaw capability enhancement" scenario. You can use it as a whole or copy only selected directories as needed.
+MedClaw is designed for the "local OpenClaw capability enhancement" scenario. You can use it as a whole or copy only selected directories as needed.
 Unlike generic prompts, this repository emphasizes:
 
 - Reusable, domain-specific skills for bioinformatics and biomedical tasks
@@ -66,13 +66,13 @@ Unlike generic prompts, this repository emphasizes:
 First, clone the repository locally:
 
 ```bash
-git clone https://github.com/<your-org-or-username>/FuxiClaw.git
+git clone https://github.com/<your-org-or-username>/MedClaw.git
 ```
 
 Then connect it to your local OpenClaw following these steps:
 
 1. Prepare a runnable local OpenClaw workspace
-2. Copy `FuxiClaw/skills/` and `FuxiClaw/SOUL.md` into a path readable by OpenClaw
+2. Copy `MedClaw/skills/` and `MedClaw/SOUL.md` into a path readable by OpenClaw
 3. Register/enable these directories according to your OpenClaw configuration method
 4. Reload the session and run a bioinformatics task for validation
 
@@ -98,13 +98,13 @@ sudo apt install -y curl wget git build-essential
 ### 2) Create an isolated environment (recommended)
 
 ```bash
-micromamba create -n fuxiclaw-bio -c conda-forge -c bioconda \
+micromamba create -n medclaw-bio -c conda-forge -c bioconda \
   python=3.11 r-base=4.3 r-essentials \
   r-tidyverse r-data-table r-readxl r-optparse \
   bioconductor-deseq2 bioconductor-edger bioconductor-limma \
   bioconductor-tximport bioconductor-biostrings bioconductor-annotationdbi \
   samtools bcftools bedtools fastqc multiqc -y
-micromamba activate fuxiclaw-bio
+micromamba activate medclaw-bio
 ```
 
 ### 3) Install R packages (if not covered by conda or if additional packages are needed)
@@ -149,7 +149,7 @@ If the configuration works correctly, you will usually observe:
 ## Repository Layout
 
 ```text
-FuxiClaw/
+MedClaw/
 ├── README.md
 ├── README_EN.md
 ├── LICENSE
@@ -163,7 +163,7 @@ FuxiClaw/
 
 | Repository | Why it matters |
 |------------|----------------|
-| [`openclaw/openclaw`](https://github.com/openclaw/openclaw) | OpenClaw runtime and workspace model that FuxiClaw plugs into. |
+| [`openclaw/openclaw`](https://github.com/openclaw/openclaw) | OpenClaw runtime and workspace model that MedClaw plugs into. |
 
 ## Use Cases
 

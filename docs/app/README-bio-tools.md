@@ -1,6 +1,6 @@
 # Bioinformatics Tools
 
-This document lists the bioinformatics-oriented capabilities currently available in the FuxiClaw project.
+This document lists the bioinformatics-oriented capabilities currently available in the MedClaw project.
 
 ## Skills
 

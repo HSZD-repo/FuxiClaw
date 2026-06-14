@@ -1,11 +1,11 @@
-# <img src="assets/logo.png" alt="OpenHarness" width="40" style="vertical-align: middle;"> `oh` — FuxiClaw 中文说明
+# <img src="assets/logo.png" alt="OpenHarness" width="40" style="vertical-align: middle;"> `oh` — MedClaw 中文说明
 
 <p align="center">
   <a href="README-OpenHarness.md"><strong>English</strong></a> ·
   <a href="README-OpenHarness.zh-CN.md"><strong>简体中文</strong></a>
 </p>
 
-**FuxiClaw** 当前采用一个轻量、可扩展、可检查的 Agent Harness 运行时，包括：
+**MedClaw** 当前采用一个轻量、可扩展、可检查的 Agent Harness 运行时，包括：
 
 - Agent loop
 - tools / skills / plugins
@@ -54,8 +54,8 @@ curl -fsSL https://raw.githubusercontent.com/HKUDS/OpenHarness/main/scripts/inst
 ### 本地运行
 
 ```bash
-git clone <your-fuxiclaw-repo-url>
-cd FuxiClaw
+git clone <your-medclaw-repo-url>
+cd MedClaw
 uv sync --extra dev
 uv run oh
 ```
@@ -411,8 +411,8 @@ python scripts/test_real_skills_plugins.py
 开发环境：
 
 ```bash
-git clone <your-fuxiclaw-repo-url>
-cd FuxiClaw
+git clone <your-medclaw-repo-url>
+cd MedClaw
 uv sync --extra dev
 uv run pytest -q
 ```

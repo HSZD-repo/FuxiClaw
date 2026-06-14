@@ -25,7 +25,7 @@ export default function WelcomeCard({
     <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-8 p-8 overflow-y-auto">
       <div className="text-center">
         <div className="text-3xl font-extrabold tracking-tight text-text-primary mb-1.5">
-          FuxiClaw
+          MedClaw
         </div>
         <div className="text-sm text-text-muted">
           {model ? `Connected · ${model}` : "Connected"}
@@ -73,7 +73,7 @@ function ConnectingState() {
     <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-4">
       <div className="spinner" />
       <div className="text-sm text-text-muted">
-        Connecting to FuxiClaw…
+        Connecting to MedClaw…
       </div>
     </div>
   );

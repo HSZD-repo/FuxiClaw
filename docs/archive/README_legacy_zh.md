@@ -5,7 +5,7 @@
 <div align="center">
 
 <p align="center">
-  <img src="FuxiClaw_Logo.png" alt="FuxiClaw Logo" width="350">
+  <img src="MedClaw_Logo.png" alt="MedClaw Logo" width="350">
 </p>
 
 **伏羲Claw 是一个面向 OpenClaw 的开源医学与生物信息能力文档库，</br>便于将 `skills` 与 `SOUL` 迁移到本地 OpenClaw 工作区。**
@@ -66,13 +66,13 @@
 先克隆仓库到本地：
 
 ```bash
-git clone https://github.com/<your-org-or-username>/FuxiClaw.git
+git clone https://github.com/<your-org-or-username>/MedClaw.git
 ```
 
 然后按以下步骤接入你的本地 OpenClaw：
 
 1. 准备一个可运行的 OpenClaw 本地工作区  
-2. 将 `FuxiClaw/skills/` 与 `FuxiClaw/SOUL.md` 拷贝到 OpenClaw 可读取路径  
+2. 将 `MedClaw/skills/` 与 `MedClaw/SOUL.md` 拷贝到 OpenClaw 可读取路径  
 3. 按你的 OpenClaw 配置方式注册/启用这些目录  
 4. 重载会话并运行一个生信任务做验证
 
@@ -98,13 +98,13 @@ sudo apt install -y curl wget git build-essential
 ### 2) 创建隔离环境（推荐）
 
 ```bash
-micromamba create -n FuxiClaw-bio -c conda-forge -c bioconda \
+micromamba create -n MedClaw-bio -c conda-forge -c bioconda \
   python=3.11 r-base=4.3 r-essentials \
   r-tidyverse r-data-table r-readxl r-optparse \
   bioconductor-deseq2 bioconductor-edger bioconductor-limma \
   bioconductor-tximport bioconductor-biostrings bioconductor-annotationdbi \
   samtools bcftools bedtools fastqc multiqc -y
-micromamba activate FuxiClaw-bio
+micromamba activate MedClaw-bio
 ```
 
 ### 3) 安装 R 包（若 conda 未覆盖或需要补充）
@@ -151,7 +151,7 @@ R -e "library(DESeq2); library(edgeR); library(limma); sessionInfo()"
 ## 仓库结构
 
 ```text
-FuxiClaw/
+MedClaw/
 ├── README.md
 ├── LICENSE
 ├── SOUL.md

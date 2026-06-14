@@ -1,9 +1,9 @@
 {
-  "name": "@fuxiclaw/application-ui",
+  "name": "@medclaw/application-ui",
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "FuxiClaw web UI (static mock build, not wired to backend yet)",
+  "description": "MedClaw web UI (static mock build, not wired to backend yet)",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

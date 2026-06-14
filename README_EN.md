@@ -1,21 +1,142 @@
-# FuxiClaw
+# MedClaw
 
-**FuxiClaw** is a bioinformatics GUI agent application built on top of [OpenHarness](https://github.com/HKUDS/OpenHarness).
+**MedClaw** is a bioinformatics GUI agent application built on top of [OpenHarness](https://github.com/HKUDS/OpenHarness).
 
 For the Chinese version of this document, see [README.md](README.md).
 
 <p align="center">
-  <img src="assets/branding/FuxiClaw_Logo.png" alt="FuxiClaw Logo" width="320">
+  <img src="assets/branding/MedClaw_Logo.png" alt="MedClaw Logo" width="320">
 </p>
 
 <!-- Demo video placeholder -->
 ## Demo
 
 <p align="center">
-  <img src="assets/demo/sample_demo.gif" alt="FuxiClaw sample demo" width="100%">
+  <img src="assets/demo/sample_demo.gif" alt="MedClaw sample demo" width="100%">
 </p>
 
-Sample: FuxiClaw can automatically turn a given protein-ligand structure into a drug discovery report covering the binding pocket, key interactions, mutation impacts, and optimization suggestions. For a clearer demo video, open [`assets/demo/sample_demo.mp4`](assets/demo/sample_demo.mp4).
+Sample: MedClaw can automatically turn a given protein-ligand structure into a drug discovery report covering the binding pocket, key interactions, mutation impacts, and optimization suggestions. For a clearer demo video, open [`assets/demo/sample_demo.mp4`](assets/demo/sample_demo.mp4).
+
+## Application UI (Browser Interface)
+
+MedClaw ships with a full browser-based graphical interface (the Application UI) at `frontend/application-ui/`. It is the primary way to interact with the agent, supporting chat sessions, file uploads, Artifact preview, settings management, and more.
+
+### Architecture
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│                    Browser (http://localhost:5173)             │
+│  ┌─────────────────────────────────────────────────────────┐ │
+│  │  React 18 + TypeScript + Tailwind v4                     │ │
+│  │  · CodeMirror editor (Artifact preview)                  │ │
+│  │  · Radix UI primitives + shadcn-style components         │ │
+│  │  · react-markdown (Markdown rendering)                   │ │
+│  │  · react-resizable-panels (Chat / Artifact split)        │ │
+│  └──────┬──────────────┬────────────────────────────────────┘ │
+│         │ WebSocket     │ HTTP REST                            │
+│         │ (/ws)         │ (/api/upload, /api/session-export…)  │
+└─────────┼──────────────┼────────────────────────────────────────┘
+          │              │
+┌─────────┼──────────────┼────────────────────────────────────────┐
+│  Vite   ▼              ▼                                        │
+│  Dev    ┌──────────────────────────┐                             │
+│  Proxy  │  /ws → ws://127.0.0.1:8765                            │
+│         │  /api → http://127.0.0.1:8765                         │
+│         └──────────┬───────────────┘                             │
+└────────────────────┼────────────────────────────────────────────┘
+                     │
+┌────────────────────┼────────────────────────────────────────────┐
+│  Python Backend    ▼                                             │
+│  (Starlette + uvicorn, port 8765)                                │
+│  ┌─────────────────────────────────────────────────────────────┐ │
+│  │ · WebSocket protocol: assistant_delta / tool_started / ... │ │
+│  │ · REST endpoints: /upload, /session-output, /artifacts     │ │
+│  │ · Session persistence (session JSON files on disk)         │ │
+│  │ · File upload service (600 MB limit)                       │ │
+│  └─────────────────────────────────────────────────────────────┘ │
+│                                                                  │
+│  Launch commands:                                                 │
+│    oh web --port 8765                                             │
+│    python -m openharness.web --port 8765                         │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+**Data flow at a glance:**
+
+1. **WebSocket** — The browser connects to `/ws` and sends JSON commands (`submit_line`, `new_session`, etc.). The backend streams back events (`assistant_delta` for real-time completions, `tool_started` for tool invocations, `transcript_item` for conversation entries, etc.).
+2. **REST API** — File uploads go through `POST /api/upload`; session output and export use `GET /api/session-output/{id}` and `GET /api/session-export/{id}`.
+3. **Dev proxy** — In development, the Vite dev server proxies `/ws` and `/api` to the backend port (default `8765`), so the browser communicates with the same origin (`localhost:5173`).
+4. **Shared protocol types** — TypeScript definitions live in `frontend/application-ui/src/types/protocol.ts`; the Python equivalent is in `src/openharness/ui/protocol.py`.
+
+### How to launch
+
+**Full mode (backend + frontend dev server):**
+
+```bash
+scripts/dev_application_ui.sh
+```
+
+This starts both the Python backend (port `8765`) and the Vite frontend dev server (port `5173`).
+
+**Backend only (for standalone frontend or production build):**
+
+```bash
+# Using the CLI
+oh web --port 8765
+
+# Or directly with the Python module
+python -m openharness.web --port 8765
+```
+
+**Frontend mock mode only (no backend needed for UI development):**
+
+```bash
+cd frontend/application-ui
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173`. All backend calls are stubbed with mock data — useful for iterating on the UI in isolation.
+
+### Production build
+
+The frontend can be built for production with:
+
+```bash
+cd frontend/application-ui
+npm run build     # outputs to frontend/application-ui/dist/
+```
+
+The resulting static files can be served by any HTTP server.
+
+### Backend CLI reference
+
+| Flag | Default | Description |
+|------|---------|-------------|
+| `--port` | `8765` | Backend listen port |
+| `--host` | `127.0.0.1` | Bind address |
+| `--model` | env var | Model name (e.g. `gpt-4.1`) |
+| `--base-url` | env var | API base URL |
+| `--api-key` | env var | API key |
+| `--provider` | env var | Provider label (e.g. `OpenAI`, `DeepSeek`) |
+
+All CLI flags fall back to environment variables (`OPENAI_API_KEY`, `OPENAI_BASE_URL`, `OPENHARNESS_MODEL`, etc.).
+
+### Configuration
+
+1. Copy `.env.example` to `.env` and fill in your API key:
+   ```bash
+   cp .env.example .env
+   ```
+2. The backend reads `.env` from the project root automatically; frontend environment variables are configured in `frontend/application-ui/.env`.
+3. The WebSocket URL resolution order is: UI settings panel override → `VITE_OH_WS_URL` env var → `ws://<current-origin>/ws` (Vite proxy default).
+
+### Protocol reference
+
+- **Frontend → Backend**: `submit_line` (send a message), `new_session` (create session), `load_session` (restore history), `session_control` (stop execution), `permission_response` (approve/deny tool), etc.
+- **Backend → Frontend**: `assistant_delta` (streaming text), `assistant_complete` (reply finished), `tool_started` / `tool_completed` (tool execution lifecycle), `transcript_item` (conversation entries), `state_snapshot` (current app state), etc.
+
+Full protocol definitions are in `frontend/application-ui/src/types/protocol.ts` and `src/openharness/ui/protocol.py`.
 
 ## Quick Start
 
@@ -28,7 +149,7 @@ Choose your platform:
 
 > macOS only. The commands below assume a Unix-like shell on macOS.
 
-The steps below are written for a first-time user who has just cloned this repository locally. When finished, you will have a GUI-based FuxiClaw setup, and the frontend agent will be able to use a local Docker-backed `bioinformatics` sandbox through OpenSandbox.
+The steps below are written for a first-time user who has just cloned this repository locally. When finished, you will have a GUI-based MedClaw setup, and the frontend agent will be able to use a local Docker-backed `bioinformatics` sandbox through OpenSandbox.
 
 Before you begin, you can watch this Mac Quick Start demo video:
 
@@ -59,15 +180,15 @@ docker info
 #### 2. Clone the repository and enter the project root
 
 ```bash
-git clone <your-repo-url> FuxiClaw
-cd FuxiClaw
+git clone <your-repo-url> MedClaw
+cd MedClaw
 ```
 
 If you have already cloned the repository, just `cd` into the project root.
 
 #### 3. Check and prepare the bioinformatics Docker image
 
-FuxiClaw uses the `bioinformatics` sandbox environment by default. Its image is:
+MedClaw uses the `bioinformatics` sandbox environment by default. Its image is:
 
 ```text
 openharness/sandbox-bioinformatics:latest
@@ -147,7 +268,7 @@ OPENHARNESS_PROVIDER=DeepSeek
 Open a first terminal window and run:
 
 ```bash
-cd FuxiClaw
+cd MedClaw
 source .venv/bin/activate
 opensandbox-server
 ```
@@ -159,7 +280,7 @@ If you see a port-in-use error such as `127.0.0.1:8081 already in use`, you like
 Open a second terminal window and run:
 
 ```bash
-cd FuxiClaw
+cd MedClaw
 source .venv/bin/activate
 scripts/dev_application_ui.sh
 ```
@@ -212,7 +333,7 @@ Once the dependencies and Docker image are already prepared, future launches usu
 
 > Windows only. The commands below assume native Windows, PowerShell, and Docker Desktop.
 
-The steps below are written for a first-time user who has just cloned this repository locally. When finished, you will have a GUI-based FuxiClaw setup running in native Windows PowerShell, using OpenSandbox + Docker Desktop with the `bioinformatics` sandbox environment. Unlike macOS, Windows does not use `scripts/dev_application_ui.sh`; instead, it starts OpenSandbox Server, the web backend, and the Vite frontend in separate PowerShell windows.
+The steps below are written for a first-time user who has just cloned this repository locally. When finished, you will have a GUI-based MedClaw setup running in native Windows PowerShell, using OpenSandbox + Docker Desktop with the `bioinformatics` sandbox environment. Unlike macOS, Windows does not use `scripts/dev_application_ui.sh`; instead, it starts OpenSandbox Server, the web backend, and the Vite frontend in separate PowerShell windows.
 
 Before you begin, you can watch this Windows Quickstart demo video:
 
@@ -247,15 +368,15 @@ If `docker version` or `docker info` fails, do not continue to the later OpenSan
 #### 2. Clone the repository and enter the project root
 
 ```powershell
-git clone <your-repo-url> FuxiClaw
-cd FuxiClaw
+git clone <your-repo-url> MedClaw
+cd MedClaw
 ```
 
 If you have already cloned the repository, just `cd` into the project root.
 
 #### 3. Check and prepare the bioinformatics Docker image
 
-FuxiClaw uses the `bioinformatics` sandbox environment by default. Its image is:
+MedClaw uses the `bioinformatics` sandbox environment by default. Its image is:
 
 ```text
 openharness/sandbox-bioinformatics:latest
@@ -350,7 +471,7 @@ If you keep the default empty `server.api_key`, the first startup requires you t
 Open the first PowerShell window and run:
 
 ```powershell
-cd FuxiClaw
+cd MedClaw
 docker info
 $cfg = Join-Path $HOME ".sandbox.toml"
 & ".\.venv\Scripts\opensandbox-server.exe" --config $cfg
@@ -379,7 +500,7 @@ If you see `DOCKER::INITIALIZATION_ERROR`, `Error while fetching server API vers
 Open the second PowerShell window and run:
 
 ```powershell
-cd FuxiClaw
+cd MedClaw
 $env:OPENAI_API_KEY="your_api_key"
 $env:OPENAI_BASE_URL="https://api.openai.com/v1"
 $env:OPENHARNESS_MODEL="gpt-4.1"
@@ -402,7 +523,7 @@ $env:OPENHARNESS_PROVIDER="DeepSeek"
 Open the third PowerShell window and run:
 
 ```powershell
-cd FuxiClaw
+cd MedClaw
 npm.cmd --prefix frontend/application-ui run dev -- --port 5173
 ```
 
@@ -456,7 +577,7 @@ Once the dependencies, `.sandbox.toml`, and Docker image are already prepared, f
 
 ## Project Overview
 
-FuxiClaw aims to let users who are not comfortable with the command line work with a bioinformatics-capable agent through a browser interface: upload data, describe analysis goals, inspect tool execution, and download generated result files.
+MedClaw aims to let users who are not comfortable with the command line work with a bioinformatics-capable agent through a browser interface: upload data, describe analysis goals, inspect tool execution, and download generated result files.
 
 Built on top of the Vibe Code agent loop, tool system, permission model, and session capabilities, this project adds a bioinformatics-oriented web UI and combines OpenSandbox with local Docker so heavyweight dependencies can run inside containers.
 

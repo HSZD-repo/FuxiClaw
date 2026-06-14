@@ -1,10 +1,10 @@
-# FuxiClaw Showcase
+# MedClaw Showcase
 
-This page collects concrete ways to use FuxiClaw without overselling the project. Each example is intended to be small, reproducible, and easy to extend.
+This page collects concrete ways to use MedClaw without overselling the project. Each example is intended to be small, reproducible, and easy to extend.
 
 ## 1. Repository-aware coding assistant
 
-Use FuxiClaw as a lightweight local coding agent for reading code, making edits, and running validation commands.
+Use MedClaw as a lightweight local coding agent for reading code, making edits, and running validation commands.
 
 ```bash
 uv run oh
@@ -27,7 +27,7 @@ uv run oh -p "List files that define the permission system" --output-format stre
 
 ## 3. Skill and plugin playground
 
-FuxiClaw can load Markdown skills and Claude-style plugin layouts, which makes it useful for experimentation with custom workflows.
+MedClaw can load Markdown skills and Claude-style plugin layouts, which makes it useful for experimentation with custom workflows.
 
 Examples:
 
@@ -51,7 +51,7 @@ Create a background task that runs the slow integration script and report back w
 
 ## 5. Provider compatibility testbed
 
-FuxiClaw is useful when you need to compare Anthropic-compatible backends behind one harness.
+MedClaw is useful when you need to compare Anthropic-compatible backends behind one harness.
 
 Typical scenarios:
 
@@ -77,4 +77,4 @@ Good showcase additions are:
 - Based on a real workflow you ran.
 - Short enough to reproduce locally.
 - Honest about prerequisites and limitations.
-- Focused on what FuxiClaw makes easier, not on generic LLM claims.
+- Focused on what MedClaw makes easier, not on generic LLM claims.

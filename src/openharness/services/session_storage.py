@@ -278,7 +278,7 @@ def export_session_markdown(
     """Export the session transcript as Markdown."""
     session_dir = get_project_session_dir(cwd)
     path = session_dir / "transcript.md"
-    parts: list[str] = ["# FuxiClaw Session Transcript"]
+    parts: list[str] = ["# MedClaw Session Transcript"]
     for message in messages:
         parts.append(f"\n## {message.role.capitalize()}\n")
         text = message.text.strip()

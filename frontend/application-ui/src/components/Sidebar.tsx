@@ -51,7 +51,7 @@ export default function Sidebar({
           <div className="flex h-8 items-center justify-between">
             <div className="min-w-0">
               <div className="truncate text-[13px] font-semibold text-text-primary">
-                FuxiClaw
+                MedClaw
               </div>
             </div>
             <div className="flex items-center gap-1">

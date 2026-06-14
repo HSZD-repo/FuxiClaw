@@ -1,6 +1,6 @@
-# FuxiClaw Application UI
+# MedClaw Application UI
 
-Standalone web UI for FuxiClaw, mirroring the design of the reference
+Standalone web UI for MedClaw, mirroring the design of the reference
 `frontend/web/` client but running entirely on **mock data** — no backend is
 required.
 
@@ -34,7 +34,7 @@ Open <http://localhost:5173> in a browser.
 ## Turning it into a real client later
 
 The WebSocket/REST contracts are preserved in `src/types/protocol.ts` and
-`src/store/sessionReducer.ts`. To connect a real FuxiClaw backend:
+`src/store/sessionReducer.ts`. To connect a real MedClaw backend:
 
 1. Replace `src/hooks/useWebSocket.ts` with a real `new WebSocket(...)` impl
    (the reference version lives at `frontend/web/src/hooks/useWebSocket.ts`
@@ -42,7 +42,7 @@ The WebSocket/REST contracts are preserved in `src/types/protocol.ts` and
 2. Replace `src/hooks/useSessionManager.ts` and `useFileUpload.ts` with real
    `fetch("/api/...")` calls.
 3. Add a `server.proxy` block to `vite.config.ts` pointing `/ws` and `/api` at
-   the FuxiClaw backend port (typically `http://127.0.0.1:8765`).
+   the MedClaw backend port (typically `http://127.0.0.1:8765`).
 
 No component file needs to change — the mock layer is isolated to the hooks
 and `lib/mockData.ts`.

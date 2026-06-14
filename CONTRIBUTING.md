@@ -1,6 +1,6 @@
-# Contributing to FuxiClaw
+# Contributing to MedClaw
 
-FuxiClaw is an open-source agent application focused on clarity, hackability, and compatibility with Claude-style workflows.
+MedClaw is an open-source agent application focused on clarity, hackability, and compatibility with Claude-style workflows.
 
 ## Ways to contribute
 
@@ -13,8 +13,8 @@ FuxiClaw is an open-source agent application focused on clarity, hackability, an
 ## Development setup
 
 ```bash
-git clone <your-fuxiclaw-repo-url>
-cd FuxiClaw
+git clone <your-medclaw-repo-url>
+cd MedClaw
 uv sync --extra dev
 ```
 

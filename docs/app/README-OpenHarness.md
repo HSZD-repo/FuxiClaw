@@ -3,7 +3,7 @@
   &nbsp;&nbsp;
   <img src="assets/ohmo.png" alt="ohmo" width="64" style="vertical-align: middle;">
   <br>
-  <code>oh</code> — FuxiClaw Core &amp; <code>ohmo</code>
+  <code>oh</code> — MedClaw Core &amp; <code>ohmo</code>
 </h1>
 
 <p align="center">
@@ -11,9 +11,9 @@
   <a href="README-OpenHarness.zh-CN.md"><strong>简体中文</strong></a>
 </p>
 
-**FuxiClaw** ships with a lightweight agent runtime for tool-use, skills, memory, and multi-agent coordination.
+**MedClaw** ships with a lightweight agent runtime for tool-use, skills, memory, and multi-agent coordination.
 
-**ohmo** is a personal AI agent built on the FuxiClaw runtime — not another chatbot, but an assistant that actually works for you over long sessions. Chat with ohmo in Feishu / Slack / Telegram / Discord, and it forks branches, writes code, runs tests, and opens PRs on its own. ohmo runs on your existing Claude Code or Codex subscription — no extra API key needed.
+**ohmo** is a personal AI agent built on the MedClaw runtime — not another chatbot, but an assistant that actually works for you over long sessions. Chat with ohmo in Feishu / Slack / Telegram / Discord, and it forks branches, writes code, runs tests, and opens PRs on its own. ohmo runs on your existing Claude Code or Codex subscription — no extra API key needed.
 
 **Join the community**: contribute **Harness** for open agent development.
 
@@ -38,7 +38,7 @@ Bioinformatics tool list: see [`README-bio-tools.md`](README-bio-tools.md).
   <a href="https://github.com/HKUDS/.github/blob/main/profile/README.md"><img src="https://img.shields.io/badge/WeChat-Group-C5EAB4?style=flat&logo=wechat&logoColor=white" alt="WeChat"></a>
 </p>
 
-One Command (**oh**) to Launch **FuxiClaw** and Unlock All Agent Harnesses. 
+One Command (**oh**) to Launch **MedClaw** and Unlock All Agent Harnesses. 
 
 Supports CLI agent integration including OpenClaw, nanobot, Cursor, and more.
 
@@ -47,7 +47,7 @@ Supports CLI agent integration including OpenClaw, nanobot, Cursor, and more.
 </p>
 
 ---
-## ✨ FuxiClaw's Key Harness Features
+## ✨ MedClaw's Key Harness Features
 
 <table align="center" width="100%">
 <tr>
@@ -782,7 +782,7 @@ See [`docs/SHOWCASE.md`](docs/SHOWCASE.md) for short, reproducible examples.
 
 ## 🤝 Contributing
 
-FuxiClaw is a **community-driven research project**. We welcome contributions in:
+MedClaw is a **community-driven research project**. We welcome contributions in:
 
 | Area | Examples |
 |------|---------|
@@ -796,8 +796,8 @@ FuxiClaw is a **community-driven research project**. We welcome contributions in
 
 ```bash
 # Development setup
-git clone <your-fuxiclaw-repo-url>
-cd FuxiClaw
+git clone <your-medclaw-repo-url>
+cd MedClaw
 uv sync --extra dev
 uv run pytest -q  # Verify everything works
 ```

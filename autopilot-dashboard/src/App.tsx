@@ -204,11 +204,11 @@ export function App() {
           <div className="hero-main">
             <div className="eyebrow">// AUTOPILOT_KANBAN</div>
             <h1>
-              FuxiClaw<br />
+              MedClaw<br />
               <span className="accent">SELF-EVOLUTION</span>
             </h1>
             <p className="hero-sub">
-              Kanban for FuxiClaw self-evolution.
+              Kanban for MedClaw self-evolution.
             </p>
             <div className="focus-box">
               <div className="focus-label">// CURRENT_FOCUS</div>

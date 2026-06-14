@@ -58,7 +58,7 @@ def test_export_session_markdown(tmp_path: Path, monkeypatch):
 
     assert path.exists()
     content = path.read_text(encoding="utf-8")
-    assert "FuxiClaw Session Transcript" in content
+    assert "MedClaw Session Transcript" in content
     assert "hello" in content
     assert "world" in content
 

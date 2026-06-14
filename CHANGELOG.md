@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to FuxiClaw should be recorded in this file.
+All notable changes to MedClaw should be recorded in this file.
 
 The format is based on Keep a Changelog, and this project currently tracks changes in a lightweight, repository-oriented way.
 
@@ -17,7 +17,7 @@ The format is based on Keep a Changelog, and this project currently tracks chang
 - `OPENAI_API_KEY` fallback when using OpenAI-format providers.
 - GitHub Actions CI workflow for Python linting, tests, and frontend TypeScript checks.
 - `CONTRIBUTING.md` with local setup, validation commands, and PR expectations.
-- `docs/app/SHOWCASE.md` with concrete FuxiClaw usage patterns and demo commands.
+- `docs/app/SHOWCASE.md` with concrete MedClaw usage patterns and demo commands.
 - GitHub issue templates and a pull request template.
 - React TUI assistant messages now render structured Markdown blocks, including headings, lists, code fences, blockquotes, links, and tables.
 - Built-in `codex` output style for compact, low-noise transcript rendering in React TUI.
